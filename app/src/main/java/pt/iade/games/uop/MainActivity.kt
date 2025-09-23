@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pt.iade.games.uop.ui.components.Character
 import pt.iade.games.uop.ui.theme.UopTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,36 +35,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Character(state: String) {
-    val mood: Int
-    if (state == "hungry") {
-        mood = R.drawable.uop_hungry
-    } else if (state == "hurt") {
-        mood = R.drawable.uop_hurt
-    } else if (state == "sad") {
-        mood = R.drawable.uop_sad
-    } else if (state == "dirty") {
-        mood = R.drawable.uop_dirty
-    } else if (state == "idle") {
-        mood = R.drawable.uop_idle
-    } else {
-        mood = R.drawable.ic_launcher_background
-    }
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Uop is $state")
-        Image(
-            painter = painterResource(mood),
-            contentDescription = "Uop is $state"
-        )
-    }
-}
-
-@Composable
 fun MainView() {
-    Character(state = "sad")
+    Column {
+        Character(state = "sad")
+    }
 }
 
 @Preview(showBackground = true)

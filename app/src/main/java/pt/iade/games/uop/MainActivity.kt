@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pt.iade.games.uop.ui.components.Character
+import pt.iade.games.uop.ui.components.StatsCard
 import pt.iade.games.uop.ui.theme.UopTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
 fun MainView() {
     Column {
         Character(state = "sad")
+        StatsCard()
     }
 }
 

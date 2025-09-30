@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import pt.iade.games.uop.R
 
 @Composable
@@ -33,5 +34,25 @@ fun Character(state: String) {
             painter = painterResource(mood),
             contentDescription = "Uop is $state"
         )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun CharacterPreview() {
+    Column {
+        Character("hungry")
+        Character("hurt")
+        Character("sad")
+        Character("dirty")
+        Character("idle")
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun BadCharacterPreview() {
+    Column {
+        Character("whatever")
     }
 }

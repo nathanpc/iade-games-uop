@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainView() {
     Column {
-        Character(state = "sad")
         StatsCard()
+        Character(state = "hungry")
     }
 }
 

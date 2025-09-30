@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pt.iade.games.uop.ui.components.Character
+import pt.iade.games.uop.ui.components.RoomHeader
 import pt.iade.games.uop.ui.components.StatsCard
 import pt.iade.games.uop.ui.theme.UopTheme
 
@@ -38,6 +39,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainView() {
     Column {
+        RoomHeader(
+            rooms = listOf("Living Room", "Bathroom", "Kitchen")
+        )
         StatsCard()
         Character(state = "hungry")
     }

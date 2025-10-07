@@ -15,9 +15,12 @@ import androidx.compose.ui.unit.dp
 import pt.iade.games.uop.ui.theme.UopTheme
 
 @Composable
-fun RoomHeader(rooms: List<String>) {
+fun RoomHeader(
+    rooms: List<String>,
+    modifier: Modifier = Modifier
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .horizontalScroll(
                 state = ScrollState(0),
@@ -28,7 +31,7 @@ fun RoomHeader(rooms: List<String>) {
             Button(
                 onClick = { },
                 shape = RoundedCornerShape(7.dp, 7.dp, 7.dp, 7.dp),
-                modifier = Modifier.padding(horizontal = 5.dp)
+                modifier = Modifier.padding(end = 10.dp)
             ) {
                 Text(room)
             }

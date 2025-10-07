@@ -78,9 +78,14 @@ fun MainView() {
         ) {
             // TODO: PLACE YOUR APP HERE.
             RoomHeader(
-                rooms = listOf("Living Room", "Bathroom", "Kitchen", "More Stuff")
+                rooms = listOf("Living Room", "Bathroom", "Kitchen", "More Stuff"),
+                modifier = Modifier.padding(horizontal = 10.dp)
             )
-            StatsCard()
+            Column(
+                modifier = Modifier.padding(horizontal = 10.dp)
+            ) {
+                StatsCard()
+            }
             Character(
                 state = "hungry",
                 modifier = Modifier

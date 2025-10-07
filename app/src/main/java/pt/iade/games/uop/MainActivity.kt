@@ -24,6 +24,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -50,6 +54,8 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView() {
+    var collapseCard by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -64,7 +70,7 @@ fun MainView() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { }
+                onClick = { collapseCard = !collapseCard }
             ) {
                 Icon(
                     imageVector = Icons.Default.Face,
@@ -84,7 +90,9 @@ fun MainView() {
             Column(
                 modifier = Modifier.padding(horizontal = 10.dp)
             ) {
-                StatsCard()
+                StatsCard(
+                    collapsed = collapseCard
+                )
             }
             Character(
                 state = "hungry",

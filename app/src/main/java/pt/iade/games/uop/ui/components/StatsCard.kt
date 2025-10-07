@@ -51,7 +51,9 @@ fun StatRow(
 }
 
 @Composable
-fun StatsCard() {
+fun StatsCard(
+    collapsed: Boolean = false
+) {
     Card(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -68,16 +70,19 @@ fun StatsCard() {
                 value = 5,
                 icon = R.drawable.stat_clean
             )
-            StatRow(
-                state = "Health",
-                value = 10,
-                icon = R.drawable.stat_health
-            )
-            StatRow(
-                state = "Loneliness",
-                value = 2,
-                icon = R.drawable.stat_cake
-            )
+
+            if (!collapsed) {
+                StatRow(
+                    state = "Health",
+                    value = 10,
+                    icon = R.drawable.stat_health
+                )
+                StatRow(
+                    state = "Loneliness",
+                    value = 2,
+                    icon = R.drawable.stat_cake
+                )
+            }
         }
     }
 }

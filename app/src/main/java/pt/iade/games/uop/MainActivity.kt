@@ -12,8 +12,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,27 +45,53 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        RoomHeader(
-            rooms = listOf("Living Room", "Bathroom", "Kitchen")
-        )
-        StatsCard()
-        Character(
-            state = "hungry",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(400.dp)
-        )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                colors = topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
+                title = {
+                    Text("Uop")
+                }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Face,
+                    contentDescription = "Action"
+                )
+            }
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            // TODO: PLACE YOUR APP HERE.
+            RoomHeader(
+                rooms = listOf("Living Room", "Bathroom", "Kitchen", "More Stuff")
+            )
+            StatsCard()
+            Character(
+                state = "hungry",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+            )
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainViewPreview() {
     UopTheme {
         MainView()
     }

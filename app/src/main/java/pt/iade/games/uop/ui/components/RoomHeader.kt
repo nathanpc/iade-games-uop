@@ -1,5 +1,7 @@
 package pt.iade.games.uop.ui.components
 
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +17,12 @@ import pt.iade.games.uop.ui.theme.UopTheme
 @Composable
 fun RoomHeader(rooms: List<String>) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(
+                state = ScrollState(0),
+                enabled = true
+            )
     ) {
         for (room in rooms) {
             Button(

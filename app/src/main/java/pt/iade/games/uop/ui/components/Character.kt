@@ -5,12 +5,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import pt.iade.games.uop.R
 
 @Composable
-fun Character(state: String) {
+fun Character(
+    state: String,
+    modifier: Modifier = Modifier
+) {
     val mood: Int
     if (state == "hungry") {
         mood = R.drawable.uop_hungry
@@ -32,7 +36,8 @@ fun Character(state: String) {
         Text("Uop is $state")
         Image(
             painter = painterResource(mood),
-            contentDescription = "Uop is $state"
+            contentDescription = "Uop is $state",
+            modifier = modifier
         )
     }
 }

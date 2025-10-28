@@ -1,6 +1,7 @@
 package pt.iade.games.uop
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.github.kittinunf.fuel.httpGet
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
 import pt.iade.games.uop.ui.components.Character
 import pt.iade.games.uop.ui.components.RoomHeader
 import pt.iade.games.uop.ui.components.StatsCard
@@ -36,6 +40,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            // Test HTTP request.
+            "http://10.0.2.2:5000/game_data".httpGet().response {
+                    request, response, result ->
+                // Get JSON string from server response.
+                val jsonString = String(result.get())
+
+                // Setup GSON and parse JSON.
+                val gson = GsonBuilder().create()
+                val json = gson.fromJson(jsonString, JsonObject().javaClass)
+
+                val hunger = json.get("hunger").asInt
+                val clean = json.get("clean").asInt
+
+                Log.i("Hello", jsonString);
+            }
+
             UopTheme {
                 MainView()
             }

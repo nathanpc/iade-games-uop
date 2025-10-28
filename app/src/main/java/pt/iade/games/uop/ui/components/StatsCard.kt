@@ -22,7 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pt.iade.games.uop.R
+import pt.iade.games.uop.models.UopStats
 import pt.iade.games.uop.ui.theme.UopTheme
+import kotlin.Int
 
 @Composable
 fun StatRow(
@@ -51,6 +53,7 @@ fun StatRow(
 
 @Composable
 fun StatsCard(
+    stats: UopStats,
     collapsed: Boolean = false,
     onClick: () -> Unit = {}
 ) {
@@ -64,24 +67,24 @@ fun StatsCard(
         ) {
             StatRow(
                 state = "Hunger",
-                value = 8,
+                value = stats.hunger,
                 icon = R.drawable.stat_steak
             )
             StatRow(
                 state = "Clean",
-                value = 5,
+                value = stats.clean,
                 icon = R.drawable.stat_clean
             )
 
             if (!collapsed) {
                 StatRow(
                     state = "Health",
-                    value = 10,
+                    value = stats.health,
                     icon = R.drawable.stat_health
                 )
                 StatRow(
                     state = "Loneliness",
-                    value = 2,
+                    value = stats.loneliness,
                     icon = R.drawable.stat_cake
                 )
             } else {
@@ -112,7 +115,13 @@ fun StatsCard(
 @Preview(showBackground = false)
 fun StatsCardExpandedPreview() {
     UopTheme {
-        StatsCard()
+        StatsCard(UopStats(
+            hunger = 8,
+            clean = 10,
+            health = 6,
+            loneliness = 2,
+            state = "sad"
+        ))
     }
 }
 
@@ -120,6 +129,15 @@ fun StatsCardExpandedPreview() {
 @Preview(showBackground = false)
 fun StatsCardCollapsedPreview() {
     UopTheme {
-        StatsCard(true)
+        StatsCard(
+            stats = UopStats(
+                hunger = 5,
+                clean = 8,
+                health = 10,
+                loneliness = 5,
+                state = "hungry"
+            ),
+            collapsed = true
+        )
     }
 }

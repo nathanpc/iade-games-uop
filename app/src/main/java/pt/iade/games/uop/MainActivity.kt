@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.github.kittinunf.fuel.httpGet
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import pt.iade.games.uop.models.UopStats
 import pt.iade.games.uop.ui.components.Character
 import pt.iade.games.uop.ui.components.RoomHeader
 import pt.iade.games.uop.ui.components.StatsCard
@@ -103,6 +104,13 @@ fun MainView() {
                 modifier = Modifier.padding(horizontal = 10.dp)
             ) {
                 StatsCard(
+                    stats = UopStats(
+                        hunger = 8,
+                        clean = 10,
+                        health = 6,
+                        loneliness = 2,
+                        state = "sad"
+                    ),
                     collapsed = cardCollapsed,
                     onClick = { cardCollapsed = !cardCollapsed }
                 )

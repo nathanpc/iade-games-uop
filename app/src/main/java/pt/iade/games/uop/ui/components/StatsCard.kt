@@ -2,23 +2,22 @@ package pt.iade.games.uop.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,10 +51,13 @@ fun StatRow(
 
 @Composable
 fun StatsCard(
-    collapsed: Boolean = false
+    collapsed: Boolean = false,
+    onClick: () -> Unit = {}
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
     ) {
         Column(
             modifier = Modifier.padding(15.dp)
@@ -82,6 +84,25 @@ fun StatsCard(
                     value = 2,
                     icon = R.drawable.stat_cake
                 )
+            } else {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.keyboard_arrow_down),
+                        contentDescription = "Show More",
+                        colorFilter = ColorFilter.tint(Color.Gray)
+                    )
+
+                    Text(
+                        text = "Show More...",
+                        color = Color.Gray,
+                        modifier = Modifier.padding(start = 5.dp)
+                    )
+                }
             }
         }
     }
@@ -89,8 +110,16 @@ fun StatsCard(
 
 @Composable
 @Preview(showBackground = false)
-fun StatsCardPreview() {
+fun StatsCardExpandedPreview() {
     UopTheme {
         StatsCard()
+    }
+}
+
+@Composable
+@Preview(showBackground = false)
+fun StatsCardCollapsedPreview() {
+    UopTheme {
+        StatsCard(true)
     }
 }
